@@ -4,8 +4,9 @@ import { WorkSchedule, WorkShift, ShiftType, DEFAULT_SHIFTS } from '../types/Wor
 import { DatabaseService } from '../services/database';
 import { generateId, recommendTasks as recommendTasksUtil } from '../utils/helpers';
 import { getTodayString, formatDateString, extractDateFromText } from '../utils/dateUtils';
-import { supabase } from '../lib/supabase';
-import { User } from '@supabase/supabase-js';
+// import { supabase } from '../lib/supabase'; // Disabled for demo
+// import { User } from '@supabase/supabase-js'; // Disabled for demo
+type User = any; // Placeholder type for demo
 
 interface DeletedTask {
   task: Task;

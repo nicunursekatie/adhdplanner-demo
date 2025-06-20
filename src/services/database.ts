@@ -1,4 +1,4 @@
-import { supabase } from '../lib/supabase';
+// import { supabase } from '../lib/supabase'; // Disabled for demo
 import { 
   Task, 
   Project, 
