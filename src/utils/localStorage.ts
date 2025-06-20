@@ -480,6 +480,23 @@ export const resetData = (): void => {
   localStorage.removeItem(WORK_SCHEDULE_KEY);
   localStorage.removeItem(JOURNAL_ENTRIES_KEY);
   localStorage.removeItem(LAST_WEEKLY_REVIEW_KEY);
+  localStorage.removeItem(DELETED_TASKS_KEY);
+  localStorage.removeItem(SETTINGS_KEY);
+};
+
+export const clearAllDemoData = (): void => {
+  // Clear all prefixed keys
+  const keysToRemove = Object.keys(localStorage).filter(key => 
+    key.startsWith(KEY_PREFIX) || 
+    ['tasks', 'projects', 'categories', 'dailyPlans', 'workSchedule', 'journalEntries', 'lastWeeklyReview'].includes(key)
+  );
+  
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+  
+  // Also clear any theme or other app-related data
+  localStorage.removeItem('theme');
+  localStorage.removeItem('focusData');
+  localStorage.removeItem('lastFocusReset');
 };
 
 // Weekly Review Date Functions

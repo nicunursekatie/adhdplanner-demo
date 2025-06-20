@@ -217,6 +217,28 @@ const SettingsPage: React.FC = () => {
             </Button>
           </div>
           
+          <div className="flex flex-col md:flex-row md:items-center justify-between py-2 border-b border-gray-200">
+            <div>
+              <h3 className="text-lg font-medium text-gray-900">Clear Demo Data</h3>
+              <p className="text-sm text-gray-500">
+                Clear all demo data for a fresh demonstration (cannot be undone)
+              </p>
+            </div>
+            <Button
+              variant="danger"
+              icon={<Trash2 size={16} />}
+              className="mt-2 md:mt-0"
+              onClick={() => {
+                if (confirm('Clear all demo data? This cannot be undone.')) {
+                  localStorage.clear();
+                  window.location.reload();
+                }
+              }}
+            >
+              Clear Demo
+            </Button>
+          </div>
+          
           <div className="flex flex-col md:flex-row md:items-center justify-between py-2">
             <div>
               <h3 className="text-lg font-medium text-gray-900">Reset Data</h3>
