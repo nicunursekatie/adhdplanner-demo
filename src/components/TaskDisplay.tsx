@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle2, Circle, Calendar, AlertCircle, ChevronDown, ChevronRight, Folder, PlayCircle, Sparkles } from 'lucide-react';
 import { Task } from '../types';
-import { useAppContext } from '../context/AppContextSupabase';
+import { useAppContext } from '../context/AppContext';
 import { getDueDateStatus, getRelativeTimeDisplay } from '../utils/dateUtils';
 import { GuidedWalkthroughModal } from './tasks/GuidedWalkthroughModal';
 import { QuickDueDateEditor } from './tasks/QuickDueDateEditor';

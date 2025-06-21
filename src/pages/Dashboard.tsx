@@ -19,7 +19,7 @@ import {
   Compass,
   Lightbulb
 } from 'lucide-react';
-import { useAppContext } from '../context/AppContextSupabase';
+import { useAppContext } from '../context/AppContext';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import { TaskDisplay } from '../components/TaskDisplay';

@@ -109,24 +109,135 @@ export const AppProvider = ({ children }) => {
     loadData();
   }, []);
 
+  // Methods
+  const addTask = useCallback((task: Task) => {
+    const newTasks = [...tasks, task];
+    setTasks(newTasks);
+    localStorage.saveTasks(newTasks);
+  }, [tasks]);
+
+  const updateTask = useCallback((updatedTask: Task) => {
+    const newTasks = tasks.map(t => t.id === updatedTask.id ? updatedTask : t);
+    setTasks(newTasks);
+    localStorage.saveTasks(newTasks);
+  }, [tasks]);
+
+  const deleteTask = useCallback((taskId: string) => {
+    const newTasks = tasks.filter(t => t.id !== taskId);
+    setTasks(newTasks);
+    localStorage.saveTasks(newTasks);
+  }, [tasks]);
+
+  const addProject = useCallback((project: Project) => {
+    const newProjects = [...projects, project];
+    setProjects(newProjects);
+    localStorage.saveProjects(newProjects);
+  }, [projects]);
+
+  const updateProject = useCallback((updatedProject: Project) => {
+    const newProjects = projects.map(p => p.id === updatedProject.id ? updatedProject : p);
+    setProjects(newProjects);
+    localStorage.saveProjects(newProjects);
+  }, [projects]);
+
+  const deleteProject = useCallback((projectId: string) => {
+    const newProjects = projects.filter(p => p.id !== projectId);
+    setProjects(newProjects);
+    localStorage.saveProjects(newProjects);
+  }, [projects]);
+
+  const addCategory = useCallback((category: Category) => {
+    const newCategories = [...categories, category];
+    setCategories(newCategories);
+    localStorage.saveCategories(newCategories);
+  }, [categories]);
+
+  const updateCategory = useCallback((updatedCategory: Category) => {
+    const newCategories = categories.map(c => c.id === updatedCategory.id ? updatedCategory : c);
+    setCategories(newCategories);
+    localStorage.saveCategories(newCategories);
+  }, [categories]);
+
+  const deleteCategory = useCallback((categoryId: string) => {
+    const newCategories = categories.filter(c => c.id !== categoryId);
+    setCategories(newCategories);
+    localStorage.saveCategories(newCategories);
+  }, [categories]);
+
+  const exportData = useCallback(() => {
+    return localStorage.exportData();
+  }, []);
+
+  const importData = useCallback((data: string) => {
+    const success = localStorage.importData(data);
+    if (success) {
+      // Reload data
+      setTasks(localStorage.getTasks());
+      setProjects(localStorage.getProjects());
+      setCategories(localStorage.getCategories());
+      setDailyPlans(localStorage.getDailyPlans());
+      setWorkSchedule(localStorage.getWorkSchedule());
+      setJournalEntries(localStorage.getJournalEntries());
+    }
+    return success;
+  }, []);
+
+  const resetData = useCallback(() => {
+    localStorage.resetData();
+    setTasks([]);
+    setProjects([]);
+    setCategories([]);
+    setDailyPlans([]);
+    setWorkSchedule(null);
+    setJournalEntries([]);
+    setSettings(DEFAULT_SETTINGS);
+  }, []);
+
+  const initializeSampleData = useCallback(() => {
+    const sampleData = createSampleData();
+    setTasks(sampleData.tasks);
+    setProjects(sampleData.projects);
+    setCategories(sampleData.categories);
+    localStorage.saveTasks(sampleData.tasks);
+    localStorage.saveProjects(sampleData.projects);
+    localStorage.saveCategories(sampleData.categories);
+  }, []);
+
+  const updateSettings = useCallback((newSettings: AppSettings) => {
+    setSettings(newSettings);
+    localStorage.saveSettings(newSettings);
+  }, []);
+
+  const needsWeeklyReview = useCallback(() => {
+    return localStorage.needsWeeklyReview();
+  }, []);
+
   return (
     <AppContext.Provider value={{
       tasks,
-      setTasks,
       projects,
-      setProjects,
       categories,
-      setCategories,
       dailyPlans,
-      setDailyPlans,
       workSchedule,
-      setWorkSchedule,
       journalEntries,
-      setJournalEntries,
       isLoading,
       isDataInitialized,
       settings,
-      setSettings,
+      addTask,
+      updateTask,
+      deleteTask,
+      addProject,
+      updateProject,
+      deleteProject,
+      addCategory,
+      updateCategory,
+      deleteCategory,
+      exportData,
+      importData,
+      resetData,
+      initializeSampleData,
+      updateSettings,
+      needsWeeklyReview,
     }}>
       {children}
     </AppContext.Provider>

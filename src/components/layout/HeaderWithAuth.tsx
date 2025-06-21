@@ -17,7 +17,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
-import { useAppContext } from '../../context/AppContextSupabase';
+import { useAppContext } from '../../context/AppContext';
 
 const HeaderWithAuth: React.FC = () => {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext as AppContextLocal } from '../context/AppContext';
-import { AppContext as AppContextSupabase } from '../context/AppContextSupabase';
+import { AppContext as AppContextSupabase } from '../context/AppContext';
 
 // This hook attempts to use whichever AppContext is available
 export const useAppContextBridge = () => {
