@@ -179,8 +179,8 @@ export const recommendTasks = (
   return sortedTasks.slice(0, 5);
 };
 
-// Create sample data for new users
-export const createSampleData = (): void => {
+// Create sample data for new users  
+export const createSampleData = (): { tasks: Task[], projects: Project[], categories: Category[] } => {
   const now = new Date().toISOString();
   const today = formatDate(new Date());
   const tomorrow = formatDate(new Date(Date.now() + 86400000));
@@ -328,8 +328,10 @@ export const createSampleData = (): void => {
     return task;
   });
   
-  // Save sample data to localStorage
-  localStorage.setItem('taskManager_categories', JSON.stringify(categories));
-  localStorage.setItem('taskManager_projects', JSON.stringify(projects));
-  localStorage.setItem('taskManager_tasks', JSON.stringify(updatedTasks));
+  // Return sample data
+  return {
+    tasks: updatedTasks,
+    projects,
+    categories
+  };
 };
