@@ -253,14 +253,14 @@ const Dashboard: React.FC = () => {
                     className="transition-all duration-1000 ease-out"
                     strokeLinecap="round"
                   />
+                  <defs>
+                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#ffffff" />
+                      <stop offset="50%" stopColor="#06b6d4" />
+                      <stop offset="100%" stopColor="#ffffff" />
+                    </linearGradient>
+                  </defs>
                 </svg>
-                <defs>
-                  <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="50%" stopColor="#06b6d4" />
-                    <stop offset="100%" stopColor="#ffffff" />
-                  </linearGradient>
-                </defs>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-2xl font-black text-white animate-number-ticker">{completionRate}%</span>
                   <span className="text-xs text-white/60 font-semibold uppercase tracking-wider">Progress</span>
